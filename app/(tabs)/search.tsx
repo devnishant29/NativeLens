@@ -4,9 +4,9 @@ import { images } from "@/constants/images";
 import MovieCard from "@/components/MovieCard";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
-import { useRouter } from "expo-router";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
+import { updateSearchCount } from "@/services/appwrite";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -30,6 +30,12 @@ const Search = () => {
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery]);
+
+  useEffect(() => {
+    if (movies?.length > 0 && movies?.[0]) {
+      updateSearchCount(searchQuery, movies[0]);
+    }
+  }, [movies]);
 
   return (
     <View className="flex-1 bg-primary">
