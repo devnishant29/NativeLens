@@ -14,14 +14,17 @@ import {
   MaterialIcons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-
+import { useState } from "react";
 import { useRouter } from "expo-router";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Octicons from "@expo/vector-icons/Octicons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 
+import GoogleAccountModal from "@/components/GoogleAccountModal";
+
 export default function App() {
   const router = useRouter();
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <SafeAreaView className="flex-1 bg-[#202124]">
       <StatusBar barStyle="light-content" />
@@ -43,7 +46,10 @@ export default function App() {
           />
         </View>
 
-        <TouchableOpacity className="h-10 w-10 bg-[#5f6368] rounded-full items-center justify-center">
+        <TouchableOpacity
+          className="h-10 w-10 bg-[#5f6368] rounded-full items-center justify-center"
+          onPress={() => setModalVisible(true)}
+        >
           <Text className="text-white text-xl font-medium">A</Text>
         </TouchableOpacity>
       </View>
@@ -56,22 +62,36 @@ export default function App() {
 
         {/* Search Bar */}
         <View className="mx-4 mb-6">
-          <View className="flex-row items-center bg-[#303134] rounded-full py-3 px-4">
+          <View className="flex-row items-center bg-[#303134] rounded-full py-6 px-4">
+            {/* Search icon - part of the main search area */}
             <Ionicons name="search" size={22} color="#9aa0a6" />
-            <TextInput
-              className="flex-1 text-white text-base mx-2"
-              placeholder="Search"
-              placeholderTextColor="#9aa0a6"
-            />
+
+            {/* Main search area touchable */}
             <TouchableOpacity
-              className="mr-4"
-              onPress={() => router.push("/voice")}
+              className="flex-1"
+              onPress={() => router.push("/search")}
+            >
+              <Text className="text-white text-base mx-2">Search</Text>
+            </TouchableOpacity>
+
+            {/* Voice search button - separate touchable */}
+            <TouchableOpacity
+              className="mr-4 w-8 h-8 items-center justify-center"
+              onPress={(e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                router.push("/voice");
+              }}
             >
               <MaterialIcons name="keyboard-voice" size={24} color="#8ab4f8" />
             </TouchableOpacity>
+
+            {/* Camera/Lens button - separate touchable */}
             <TouchableOpacity
-              className="mx-4"
-              onPress={() => router.push("/camera")}
+              className="w-8 h-8 items-center justify-center"
+              onPress={(e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                router.push("/camera");
+              }}
             >
               <MaterialCommunityIcons
                 name="google-lens"
@@ -196,6 +216,10 @@ export default function App() {
           <MaterialIcons name="menu" size={24} color="gray" />
         </TouchableOpacity>
       </View>
+      <GoogleAccountModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </SafeAreaView>
   );
 }

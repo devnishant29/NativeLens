@@ -103,13 +103,16 @@ const VoiceAssistantScreen = () => {
   }));
 
   return (
-    <View className="flex-1 bg-gray-900 justify-center items-center">
+    <View className="flex-1 bg-[#202124] justify-center items-center">
       {/* Top Bar with Back and Web Icons */}
       <View className="absolute top-12 left-4 right-4 flex-row justify-between px-4">
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity
+          className="h-12 w-12 bg-[#5f6368] rounded-full items-center justify-center"
+          onPress={() => router.back()}
+        >
           <MaterialIcons name="chevron-left" size={24} color="white" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity className="h-12 w-12 bg-[#5f6368] rounded-full items-center justify-center">
           <MaterialCommunityIcons name="web" size={24} color="white" />
         </TouchableOpacity>
       </View>

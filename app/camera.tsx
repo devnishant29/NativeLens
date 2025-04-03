@@ -5,19 +5,8 @@ import { FlashMode } from "expo-camera/build/Camera.types";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 import { useRouter } from "expo-router";
-
-{
-  /* <MaterialIcons name="flash-auto" size={24} color="black" /> */
-}
-{
-  /* <MaterialIcons name="flash-on" size={24} color="black" /> */
-}
-{
-  /* <MaterialIcons name="flash-off" size={24} color="black" /> */
-}
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -56,19 +45,15 @@ export default function App() {
     });
   };
 
-  const toggleCameraFacing = () => {
-    setFacing((current) => (current === "back" ? "front" : "back"));
-  };
-
   const getFlashText = () => {
     switch (flashMode) {
       case "on":
-        return "FLASH ON";
+        return <MaterialIcons name="flash-on" size={24} color="white" />;
       case "auto":
-        return "FLASH AUTO";
+        return <MaterialIcons name="flash-auto" size={24} color="white" />;
       case "off":
       default:
-        return "FLASH OFF";
+        return <MaterialIcons name="flash-off" size={24} color="white" />;
     }
   };
 
@@ -93,7 +78,7 @@ export default function App() {
         ref={cameraRef}
         style={styles.camera}
         facing={facing}
-        flash={flashMode} // Changed from 'flash' to 'flashMode'
+        flash={flashMode}
       >
         {/* Header Bar */}
         <View className="absolute top-0 left-0 right-0 flex-row items-center justify-between px-4 pt-12 pb-2">
@@ -102,8 +87,8 @@ export default function App() {
             <TouchableOpacity className="mr-10" onPress={() => router.back()}>
               <MaterialIcons name="chevron-left" size={24} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity>
-              <MaterialIcons name="flash-auto" size={20} color="white" />
+            <TouchableOpacity onPress={toggleFlashMode}>
+              {getFlashText()}
             </TouchableOpacity>
           </View>
 
@@ -148,7 +133,10 @@ export default function App() {
             </TouchableOpacity>
 
             {/* Search button in the center */}
-            <TouchableOpacity className="bg-white rounded-full w-20 h-20 items-center justify-center">
+            <TouchableOpacity
+              className="bg-white rounded-full w-20 h-20 items-center justify-center"
+              onPress={takePicture}
+            >
               <View className="bg-gray-200 rounded-full w-16 h-16 items-center justify-center border-black border-2">
                 <MaterialIcons name="search" size={24} color="black" />
               </View>
