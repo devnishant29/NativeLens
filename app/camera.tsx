@@ -7,6 +7,8 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
+import { useRouter } from "expo-router";
+
 {
   /* <MaterialIcons name="flash-auto" size={24} color="black" /> */
 }
@@ -22,6 +24,7 @@ export default function App() {
   const [facing, setFacing] = useState<"back" | "front">("back");
   const [flashMode, setFlashMode] = useState<FlashMode>("off");
   const cameraRef = useRef<CameraView>(null);
+  const router = useRouter();
 
   if (!permission) {
     return <View />;
@@ -96,8 +99,8 @@ export default function App() {
         <View className="absolute top-0 left-0 right-0 flex-row items-center justify-between px-4 pt-12 pb-2">
           {/* Left side icons */}
           <View className="flex-row items-center">
-            <TouchableOpacity className="mr-10">
-              <FontAwesome5 name="chevron-left" size={20} color="white" />
+            <TouchableOpacity className="mr-10" onPress={() => router.back()}>
+              <MaterialIcons name="chevron-left" size={24} color="white" />
             </TouchableOpacity>
             <TouchableOpacity>
               <MaterialIcons name="flash-auto" size={20} color="white" />
