@@ -215,11 +215,11 @@ export default function App() {
         <TouchableOpacity className="items-center">
           <MaterialIcons name="menu" size={24} color="gray" />
         </TouchableOpacity>
+        <GoogleAccountModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
       </View>
-      <GoogleAccountModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
     </SafeAreaView>
   );
 }

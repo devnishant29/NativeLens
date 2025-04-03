@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MoviesFlix",
-    "slug": "mobile_movie_app",
+    "name": "NativeLens",
+    "slug": "google_ui_clone",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",

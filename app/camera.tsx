@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FlashMode } from "expo-camera/build/Camera.types";
-
+import GoogleLensModal from "@/components/searchResultsModal";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 
@@ -10,10 +10,12 @@ import { useRouter } from "expo-router";
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
-  const [facing, setFacing] = useState<"back" | "front">("back");
+  const facing = "back";
   const [flashMode, setFlashMode] = useState<FlashMode>("off");
   const cameraRef = useRef<CameraView>(null);
   const router = useRouter();
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   if (!permission) {
     return <View />;
@@ -131,6 +133,12 @@ export default function App() {
             <TouchableOpacity className="absolute left-4 rounded-full w-16 h-16 items-center justify-center">
               <MaterialIcons name="photo-library" size={30} color="white" />
             </TouchableOpacity>
+            <TouchableOpacity
+              className="rounded-full w-16 h-16 items-center justify-center"
+              onPress={() => setModalVisible(true)}
+            >
+              <MaterialIcons name="camera" size={24} color="white" />
+            </TouchableOpacity>
 
             {/* Search button in the center */}
             <TouchableOpacity
@@ -162,6 +170,11 @@ export default function App() {
           </View>
         </View>
       </CameraView>
+      
+      <GoogleLensModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
     </View>
   );
 }
