@@ -5,7 +5,7 @@ import { FlashMode } from "expo-camera/build/Camera.types";
 import GoogleLensModal from "@/components/searchResultsModal";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
-
+import * as FileSystem from "expo-file-system";
 import { useRouter } from "expo-router";
 
 export default function App() {
@@ -65,11 +65,43 @@ export default function App() {
         console.log(`Taking picture with flash: ${flashMode}`);
         const photo = await cameraRef.current.takePictureAsync({
           quality: 0.8,
-          skipProcessing: true, // Better for flash performance
+          skipProcessing: true,
         });
+
         console.log("Photo taken:", photo);
+
+        if (!photo) {
+          throw new Error("No photo returned");
+        }
+
+        const fileName = photo.uri.split("/").pop();
+        const dataDir = `${FileSystem.documentDirectory}data/`;
+
+        // Ensure the directory exists
+        const dirInfo = await FileSystem.getInfoAsync(dataDir);
+        if (!dirInfo.exists) {
+          await FileSystem.makeDirectoryAsync(dataDir, { intermediates: true });
+        } else {
+          // Delete all existing files in the directory
+          const files = await FileSystem.readDirectoryAsync(dataDir);
+          for (const file of files) {
+            await FileSystem.deleteAsync(`${dataDir}${file}`);
+          }
+        }
+
+        // Create the new path
+        const newPath = dataDir + fileName;
+
+        // Move file to new location
+        await FileSystem.moveAsync({
+          from: photo.uri,
+          to: newPath,
+        });
+
+        console.log("Saved photo to:", newPath);
+        router.push("/lensSearchResults");
       } catch (error) {
-        console.error("Failed to take picture:", error);
+        console.error("Failed to take or save picture:", error);
       }
     }
   };
@@ -170,7 +202,7 @@ export default function App() {
           </View>
         </View>
       </CameraView>
-      
+
       <GoogleLensModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}

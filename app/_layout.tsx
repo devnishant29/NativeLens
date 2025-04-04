@@ -11,6 +11,10 @@ export default function RootLayout() {
         <Stack.Screen name="voice" options={{ headerShown: false }} />
         <Stack.Screen name="search" options={{ headerShown: false }} />
         <Stack.Screen name="camera" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="lensSearchResults"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </>
   );
