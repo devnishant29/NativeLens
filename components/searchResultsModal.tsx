@@ -248,7 +248,7 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
         <Animated.View
           style={[
             StyleSheet.absoluteFillObject,
-            { backgroundColor: "black", opacity: overlayOpacity },
+            { backgroundColor: "transparent", opacity: overlayOpacity },
           ]}
         >
           <TouchableOpacity

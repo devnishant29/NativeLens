@@ -165,12 +165,6 @@ export default function App() {
             <TouchableOpacity className="absolute left-4 rounded-full w-16 h-16 items-center justify-center">
               <MaterialIcons name="photo-library" size={30} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity
-              className="rounded-full w-16 h-16 items-center justify-center"
-              onPress={() => setModalVisible(true)}
-            >
-              <MaterialIcons name="camera" size={24} color="white" />
-            </TouchableOpacity>
 
             {/* Search button in the center */}
             <TouchableOpacity
