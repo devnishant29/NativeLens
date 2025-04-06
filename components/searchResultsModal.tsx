@@ -267,7 +267,7 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
             right: 0,
             bottom: 0,
             height: screenHeight,
-            backgroundColor: "#111827", // bg-gray-900
+            backgroundColor: "#1f1f1f", // bg-gray-900
             borderTopLeftRadius: 12,
             borderTopRightRadius: 12,
             overflow: "hidden",
@@ -276,14 +276,14 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
           {/* Drag Handle */}
           <View {...panResponder.panHandlers}>
             <DragHandle />
-            <View className="bg-gray-900 p-4"></View>
+            <View className="bg-[#1f1f1f] p-4"></View>
           </View>
 
           {/* Content below initial height */}
           <View className="flex-1">
             {/* Search Preview */}
             <View className="mx-4 mb-6">
-              <View className="flex-row items-center bg-[#303134] rounded-full py-4 px-4">
+              <View className="flex-row items-center bg-[#2f3133] rounded-full py-4 px-4">
                 {/* Search icon - part of the main search area */}
                 <AntDesign name="google" size={24} color="white" />
 
@@ -297,27 +297,35 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                  className="h-10 w-10 bg-[#5f6368] rounded-full items-center justify-center mr-2"
-                  onPress={() => setModalVisible(true)}
-                >
-                  <Text className="text-white text-xl font-medium">A</Text>
-                </TouchableOpacity>
+                <View className="border-l-[1.5px] border-white border-opacity-50">
+                  <TouchableOpacity
+                    className="h-10 w-10 bg-[#77919d] rounded-full items-center justify-center ml-3 mr-1"
+                    onPress={() => setModalVisible(true)}
+                  >
+                    <Text className="text-white text-xl font-medium">N</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
 
-            <View className="flex-row items-center justify-between px-6 pb-6">
-              <Text className="text-white">All</Text>
-              <Text className="text-white">Products</Text>
-              <Text className="text-white">Visual Matches</Text>
-              <Text className="text-white">About This Image</Text>
+            <View className="flex-row items-center justify-between px-6 pb-4 border-b-[1px] border-gray-800">
+              <Text className="text-white border-b-[1px] border-white pb-2">
+                All
+              </Text>
+              <Text className="text-[#b6b7ba] pb-2">Products</Text>
+              <Text className="text-[#b6b7ba] pb-2">Visual Matches</Text>
+              <Text className="text-[#b6b7ba] pb-2">About This Image</Text>
             </View>
 
             {/* Results Section */}
             <ScrollView className="flex-1 p-4 pb-20">
-              <Text className="text-gray-400">
-                Results for people are limited
-              </Text>
+              <View className="flex-row">
+                <MaterialIcons name="info-outline" size={24} color="#b6b7ba" />
+                <Text className="text-[#b6b7ba] pl-3">
+                  Results for people are limited
+                </Text>
+              </View>
+              <View className="pt-4 border-b-[1px] border-gray-800 -mx-4"></View>
 
               {/* Example Cards */}
               <View className="mt-4 flex-row">
@@ -391,8 +399,8 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                   left: 20,
                   right: 20,
                   margin: 20,
-                  backgroundColor: "rgba(17, 24, 39, 0.95)",
-                  borderRadius: 16,
+                  backgroundColor: "#1f2125",
+                  borderRadius: 24,
                   padding: 16,
                   shadowColor: "#000",
                   shadowOffset: { width: 0, height: 2 },
@@ -402,52 +410,43 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                   zIndex: 10,
                 }}
               >
-                <Text className="text-white text-center">
-                  Are these results useful?
-                </Text>
                 <View className="flex-row justify-center mt-2">
+                  <Text className="text-[#979da0] text-center mt-1 mr-2">
+                    Are these results useful?
+                  </Text>
                   <TouchableOpacity
-                    className="bg-blue-500 p-2 px-4 rounded-lg mx-2"
+                    className="px-2"
                     onPress={() => handleFeedback("Yes")}
                   >
-                    <Text className="text-white">Yes</Text>
+                    <Text className="text-[#8aaeed] text-xl">Yes</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    className="bg-gray-500 p-2 px-4 rounded-lg mx-2"
+                    className="px-2"
                     onPress={() => handleFeedback("No")}
                   >
-                    <Text className="text-white">No</Text>
+                    <Text className="text-[#8aaeed] text-xl">No</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity className="ml-2">
+                    <MaterialIcons name="close" size={24} color="#e1e2e6" />
                   </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity
-                  className="absolute top-2 right-2"
-                  onPress={hideFeedback}
-                >
-                  <Text className="text-gray-400 text-lg">×</Text>
-                </TouchableOpacity>
               </Animated.View>
             )}
           </View>
 
-          <View className="flex-row justify-between bg-black border-t border-gray-800 py-3 px-8">
+          <View className="flex-row justify-between bg-[#2f3133] border-t border-gray-800 pt-3 pb-6 px-8">
             <TouchableOpacity>
-              <MaterialIcons name="chevron-left" size={24} color="#9ca3af" />
+              <MaterialIcons name="arrow-back" size={30} color="#999f9f" />
             </TouchableOpacity>
             <TouchableOpacity>
-              <MaterialIcons name="chevron-right" size={24} color="#9ca3af" />
+              <MaterialIcons name="arrow-forward" size={30} color="#606467" />
             </TouchableOpacity>
             <TouchableOpacity>
-              <MaterialIcons name="home" size={24} color="#9ca3af" />
+              <MaterialIcons name="home" size={30} color="#999f9f" />
             </TouchableOpacity>
             <TouchableOpacity>
-              <MaterialIcons name="help-outline" size={24} color="#9ca3af" />
+              <MaterialIcons name="tab" size={30} color="#999f9f" />
             </TouchableOpacity>
-          </View>
-
-          {/* Home Indicator */}
-          <View className="w-full items-center pb-2">
-            <View className="w-1/3 h-1 bg-gray-500 rounded-full"></View>
           </View>
         </Animated.View>
       </View>

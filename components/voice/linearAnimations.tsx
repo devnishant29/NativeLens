@@ -15,53 +15,6 @@ type DotProps = {
   color: string;
 };
 
-const dot1 = useSharedValue(0);
-const dot2 = useSharedValue(0);
-const dot3 = useSharedValue(0);
-const dot4 = useSharedValue(0);
-
-export const startDotsAnimation = () => {
-  dot1.value = withRepeat(
-    withSequence(
-      withTiming(-10, { duration: 500 }),
-      withTiming(0, { duration: 500 })
-    ),
-    -1,
-    true
-  );
-
-  setTimeout(() => {
-    dot2.value = withRepeat(
-      withSequence(
-        withTiming(-10, { duration: 500 }),
-        withTiming(0, { duration: 500 })
-      ),
-      -1,
-      true
-    );
-  }, 100);
-  setTimeout(() => {
-    dot3.value = withRepeat(
-      withSequence(
-        withTiming(-10, { duration: 500 }),
-        withTiming(0, { duration: 500 })
-      ),
-      -1,
-      true
-    );
-  }, 200);
-  setTimeout(() => {
-    dot4.value = withRepeat(
-      withSequence(
-        withTiming(-10, { duration: 500 }),
-        withTiming(0, { duration: 500 })
-      ),
-      -1,
-      true
-    );
-  }, 300);
-};
-
 const BouncingDot = ({ delay, color }: DotProps) => {
   // ✅ Hooks at top level
   const value = useSharedValue(0);
@@ -85,7 +38,7 @@ const BouncingDot = ({ delay, color }: DotProps) => {
         false
       )
     );
-  }, []);
+  }, [delay]);
 
   // ✅ Valid hook usage
   const animatedStyle = useAnimatedStyle(() => ({
@@ -100,7 +53,67 @@ const BouncingDot = ({ delay, color }: DotProps) => {
   );
 };
 
-const EnchancedinearAnimations = () => {
+const EnhancedLinearAnimations = () => {
+  // Move shared values inside the component
+  const dot1 = useSharedValue(0);
+  const dot2 = useSharedValue(0);
+  const dot3 = useSharedValue(0);
+  const dot4 = useSharedValue(0);
+
+  // Function to start animations
+  const startDotsAnimation = () => {
+    dot1.value = withRepeat(
+      withSequence(
+        withTiming(-10, { duration: 500 }),
+        withTiming(0, { duration: 500 })
+      ),
+      -1,
+      true
+    );
+
+    // Use withDelay instead of setTimeout
+    dot2.value = withDelay(
+      100,
+      withRepeat(
+        withSequence(
+          withTiming(-10, { duration: 500 }),
+          withTiming(0, { duration: 500 })
+        ),
+        -1,
+        true
+      )
+    );
+
+    dot3.value = withDelay(
+      200,
+      withRepeat(
+        withSequence(
+          withTiming(-10, { duration: 500 }),
+          withTiming(0, { duration: 500 })
+        ),
+        -1,
+        true
+      )
+    );
+
+    dot4.value = withDelay(
+      300,
+      withRepeat(
+        withSequence(
+          withTiming(-10, { duration: 500 }),
+          withTiming(0, { duration: 500 })
+        ),
+        -1,
+        true
+      )
+    );
+  };
+
+  // Start animation on mount
+  useEffect(() => {
+    startDotsAnimation();
+  }, []);
+
   return (
     <View className="flex-row gap-x-6 items-center">
       <BouncingDot delay={0} color="#4384f4" />
@@ -111,4 +124,4 @@ const EnchancedinearAnimations = () => {
   );
 };
 
-export default EnchancedinearAnimations;
+export default EnhancedLinearAnimations;

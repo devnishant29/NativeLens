@@ -5,7 +5,6 @@ import { Audio } from "expo-av";
 import { useRouter } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { startDotsAnimation } from "@/components/voice/linearAnimations";
 import { transcribeSpeech } from "@/functions/transcribeSpeech";
 import EnchancedinearAnimations from "@/components/voice/linearAnimations";
 import EnhancedCircularAnimation from "@/components/voice/circularAnimation";
@@ -88,7 +87,6 @@ const VoiceAssistantScreen = () => {
 
     recordingRef.current = recording;
     setIsRecording(true);
-    startDotsAnimation();
   };
 
   const stopRecording = async () => {
@@ -161,7 +159,6 @@ const VoiceAssistantScreen = () => {
 
   useEffect(() => {
     if (isRecording) {
-      startDotsAnimation();
     }
   }, [isRecording]);
 
