@@ -27,11 +27,8 @@ const GoogleAccountModal: React.FC<GoogleAccountModalProps> = ({
     >
       <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
         <View className="flex-1 justify-end bg-black/50 pt-4">
-          {Platform.OS === "android" && (
-            <StatusBar backgroundColor="rgba(0,0,0,0.5)" />
-          )}
           <View
-            className="bg-[#202124] p-4 rounded-3xl mx-4 mb-4"
+            className="bg-[#2e3034] p-4 rounded-3xl mx-4 mb-4"
             pointerEvents="box-none"
           >
             {/* Rest of your modal content remains the same */}
@@ -44,7 +41,9 @@ const GoogleAccountModal: React.FC<GoogleAccountModalProps> = ({
 
                 {/* Profile Section */}
                 <View className="items-center my-4">
-                  <Ionicons name="person-circle" size={60} color="#9aa0a6" />
+                  <View className="h-16 w-16 bg-[#76919f] rounded-full items-center justify-center">
+                    <Text className="text-white text-3xl font-medium">N</Text>
+                  </View>
                   <Text className="text-white text-lg font-bold mt-2">
                     Manage your Google Account
                   </Text>
