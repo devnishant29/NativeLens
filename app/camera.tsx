@@ -4,9 +4,11 @@ import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FlashMode } from "expo-camera/build/Camera.types";
 import GoogleLensModal from "@/components/searchResultsModal";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import * as FileSystem from "expo-file-system";
 import { useRouter } from "expo-router";
+
+import SquareBorderOverlay from "@/components/lens/squareBorderOverlay";
+import BottomControls from "@/components/lens/bottomControls";
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -119,7 +121,7 @@ export default function App() {
           {/* Left side icons */}
           <View className="flex-row items-center">
             <TouchableOpacity className="mr-10" onPress={() => router.back()}>
-              <MaterialIcons name="chevron-left" size={24} color="white" />
+              <MaterialIcons name="chevron-left" size={34} color="white" />
             </TouchableOpacity>
             <TouchableOpacity onPress={toggleFlashMode}>
               {getFlashText()}
@@ -127,7 +129,7 @@ export default function App() {
           </View>
 
           {/* Center text */}
-          <Text className="text-white text-xl font-semibold">Google Lens</Text>
+          <Text className="text-white text-2xl font-semibold">Google Lens</Text>
 
           {/* Right side icons */}
           <View className="flex-row items-center">
@@ -140,61 +142,24 @@ export default function App() {
           </View>
         </View>
 
-        <View className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-28 opacity-50">
-          {/* Outer square with rounded vertices */}
-          <View className="relative w-64 h-64">
-            <View className="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-white rounded-tl-md"></View>
-            <View className="absolute -top-1 -right-1 w-5 h-5 border-t-2 border-r-2 border-white rounded-tr-md"></View>
-            <View className="absolute -bottom-1 -left-1 w-5 h-5 border-b-2 border-l-2 border-white rounded-bl-md"></View>
-            <View className="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-white rounded-br-md"></View>
-          </View>
-
-          {/* Inner square with rounded vertices */}
-          <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56">
-            <View className="absolute -top-1 -left-1 w-10 h-10 border-t-2 border-l-2 border-white rounded-tl-3xl"></View>
-            <View className="absolute -top-1 -right-1 w-10 h-10 border-t-2 border-r-2 border-white rounded-tr-3xl"></View>
-            <View className="absolute -bottom-1 -left-1 w-10 h-10 border-b-2 border-l-2 border-white rounded-bl-3xl"></View>
-            <View className="absolute -bottom-1 -right-1 w-10 h-10 border-b-2 border-r-2 border-white rounded-br-3xl"></View>
-          </View>
-        </View>
-
-        {/* Bottom Controls */}
+        <SquareBorderOverlay />
         <View className="absolute bottom-0 left-0 right-0">
-          {/* Thumbnail and Search Button */}
           <View className="flex-row justify-center items-center mb-16 relative w-full">
-            {/* Gallery icon positioned on the left edge */}
             <TouchableOpacity className="absolute left-4 rounded-full w-16 h-16 items-center justify-center">
               <MaterialIcons name="photo-library" size={30} color="white" />
             </TouchableOpacity>
 
-            {/* Search button in the center */}
             <TouchableOpacity
-              className="bg-white rounded-full w-20 h-20 items-center justify-center"
+              className="bg-white rounded-full border-[3px] border-white items-center justify-center"
               onPress={takePicture}
             >
-              <View className="bg-gray-200 rounded-full w-16 h-16 items-center justify-center border-black border-2">
-                <MaterialIcons name="search" size={24} color="black" />
+              <View className="bg-gray-200 rounded-full w-20 h-20 items-center justify-center border-[#1f2125] border-2">
+                <MaterialIcons name="search" size={34} color="#1f2125" />
               </View>
             </TouchableOpacity>
           </View>
 
-          {/* Action Buttons */}
-          <View className="flex-row justify-evenly py-8 px-4 bg-black bg-opacity-20">
-            <TouchableOpacity className="bg-gray-800 rounded-full px-4 py-2 flex-row items-center">
-              <MaterialIcons name="translate" size={14} color="white" />
-              <Text className="text-white ml-2">Translate</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity className="bg-gray-800 rounded-full px-4 py-2 flex-row items-center">
-              <MaterialIcons name="search" size={14} color="white" />
-              <Text className="text-white ml-2">Search</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity className="bg-gray-800 rounded-full px-4 py-2 flex-row items-center">
-              <SimpleLineIcons name="graduation" size={14} color="white" />
-              <Text className="text-white ml-2">Homework</Text>
-            </TouchableOpacity>
-          </View>
+          <BottomControls />
         </View>
       </CameraView>
 
