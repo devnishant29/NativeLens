@@ -1,11 +1,7 @@
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import React from "react";
 
-import {
-  AntDesign,
-  Octicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Header: React.FC<{ setModalVisible: (visible: boolean) => void }> = ({
   setModalVisible,
@@ -18,7 +14,11 @@ const Header: React.FC<{ setModalVisible: (visible: boolean) => void }> = ({
 
       <View className="flex-row gap-x-6 items-center bg-[#2f3133] pl-3 pr-4 p-3 rounded-3xl ml-6">
         <View className="flex-row gap-x-2 bg-[#1f2123] rounded-2xl px-3 py-3">
-          <AntDesign name="google" size={24} color="white" />
+          <Image
+            source={require("@/assets/google-icon.png")}
+            className="w-6 h-6"
+            resizeMode="contain"
+          />
           <Text className="text-white text-base font-medium">Search</Text>
         </View>
         <MaterialCommunityIcons

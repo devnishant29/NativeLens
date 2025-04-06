@@ -11,7 +11,6 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 interface GoogleLensModalProps {
@@ -25,7 +24,7 @@ const dummyItems = [
     id: 1,
     title: "Mountain Landscape",
     description: "Beautiful scenic view of mountains",
-    imageUrl: "https://placehold.co/400x300", // 4:3 aspect ratio
+    imageUrl: "https://placehold.co/400x300/png", // 4:3 aspect ratio
     width: 400,
     height: 300,
   },
@@ -33,7 +32,7 @@ const dummyItems = [
     id: 2,
     title: "Urban Photography",
     description: "City skyline at sunset",
-    imageUrl: "https://placehold.co/300x400", // 3:4 aspect ratio (portrait)
+    imageUrl: "https://placehold.co/300x400/png", // 3:4 aspect ratio (portrait)
     width: 300,
     height: 400,
   },
@@ -41,7 +40,7 @@ const dummyItems = [
     id: 3,
     title: "Abstract Art",
     description: "Modern abstract composition",
-    imageUrl: "https://placehold.co/500x250", // 2:1 aspect ratio (wide)
+    imageUrl: "https://placehold.co/500x250/png", // 2:1 aspect ratio (wide)
     width: 500,
     height: 250,
   },
@@ -49,7 +48,7 @@ const dummyItems = [
     id: 4,
     title: "Wildlife Shot",
     description: "Exotic animals in natural habitat",
-    imageUrl: "https://placehold.co/300x300", // 1:1 aspect ratio (square)
+    imageUrl: "https://placehold.co/300x300/png", // 1:1 aspect ratio (square)
     width: 300,
     height: 300,
   },
@@ -57,7 +56,7 @@ const dummyItems = [
     id: 5,
     title: "Beach Paradise",
     description: "Tropical island getaway",
-    imageUrl: "https://placehold.co/350x200", // 7:4 aspect ratio (wide)
+    imageUrl: "https://placehold.co/350x200/png", // 7:4 aspect ratio (wide)
     width: 350,
     height: 200,
   },
@@ -65,7 +64,7 @@ const dummyItems = [
     id: 6,
     title: "Food Photography",
     description: "Delicious culinary creation",
-    imageUrl: "https://placehold.co/250x350", // 5:7 aspect ratio (tall)
+    imageUrl: "https://placehold.co/250x350/png", // 5:7 aspect ratio (tall)
     width: 250,
     height: 350,
   },
@@ -73,7 +72,7 @@ const dummyItems = [
     id: 7,
     title: "Architectural Wonder",
     description: "Stunning modern building design",
-    imageUrl: "https://placehold.co/600x250", // 12:5 aspect ratio (very wide)
+    imageUrl: "https://placehold.co/600x250/png", // 12:5 aspect ratio (very wide)
     width: 600,
     height: 250,
   },
@@ -81,7 +80,7 @@ const dummyItems = [
     id: 8,
     title: "Portrait Shot",
     description: "Professional studio portrait",
-    imageUrl: "https://placehold.co/320x450", // 16:9 ratio (vertical)
+    imageUrl: "https://placehold.co/320x450/png", // 16:9 ratio (vertical)
     width: 320,
     height: 450,
   },
@@ -285,7 +284,11 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
             <View className="mx-4 mb-6">
               <View className="flex-row items-center bg-[#2f3133] rounded-full py-4 px-4">
                 {/* Search icon - part of the main search area */}
-                <AntDesign name="google" size={24} color="white" />
+                <Image
+                  source={require("@/assets/google-icon.png")}
+                  className="w-6 h-6"
+                  resizeMode="contain"
+                />
 
                 {/* Main search area touchable */}
                 <TouchableOpacity
@@ -342,8 +345,13 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                               width: "100%",
                               height: undefined,
                               aspectRatio: item.width / item.height,
-                              backgroundColor: "gray", // Debugging visibility
                             }}
+                            onError={(e) =>
+                              console.error(
+                                "Image failed to load:",
+                                e.nativeEvent.error
+                              )
+                            }
                             resizeMode="cover"
                           />
 

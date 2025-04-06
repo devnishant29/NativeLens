@@ -6,8 +6,8 @@ const HorizontalCards = () => {
   const tiles = [
     {
       key: "weather",
-      title: "Gurugram",
-      value: "30°",
+      title: "Ahmedabad",
+      value: "34°",
       icon: <Ionicons name="moon" size={32} color="#c8dcfc" />,
       valueTextClass: "text-5xl",
     },

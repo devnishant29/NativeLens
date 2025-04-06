@@ -5,6 +5,12 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Poppins_400Regular"], // ✅ This will be the new default
+        poppins: ["Poppins_400Regular"],
+        poppinsBold: ["Poppins_700Bold"],
+        // ... other weights if needed
+      },
       colors: {
         primary: "#030014",
         secondary: "#151312",
