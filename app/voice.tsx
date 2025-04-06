@@ -5,24 +5,13 @@ import { Audio } from "expo-av";
 import { useRouter } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import Animated, {
-  useSharedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
-  useAnimatedStyle,
-  Easing,
-} from "react-native-reanimated";
-
+import { startDotsAnimation } from "@/components/voice/linearAnimations";
 import { transcribeSpeech } from "@/functions/transcribeSpeech";
+import EnchancedinearAnimations from "@/components/voice/linearAnimations";
+import EnhancedCircularAnimation from "@/components/voice/circularAnimation";
 
 const VoiceAssistantScreen = () => {
   const router = useRouter();
-
-  const dot1 = useSharedValue(0);
-  const dot2 = useSharedValue(0);
-  const dot3 = useSharedValue(0);
-  const dot4 = useSharedValue(0);
 
   const recordingRef = useRef<Audio.Recording | null>(null);
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -88,7 +77,7 @@ const VoiceAssistantScreen = () => {
           if (!silenceTimerRef.current) {
             silenceTimerRef.current = setTimeout(() => {
               stopRecording();
-            }, 2000); // 2 seconds of silence
+            }, 2000); // 1 seconds of silence
           }
         } else if (silenceTimerRef.current) {
           clearTimeout(silenceTimerRef.current);
@@ -169,47 +158,6 @@ const VoiceAssistantScreen = () => {
   }, []);
 
   // Dots animation
-  const startDotsAnimation = () => {
-    dot1.value = withRepeat(
-      withSequence(
-        withTiming(-10, { duration: 500 }),
-        withTiming(0, { duration: 500 })
-      ),
-      -1,
-      true
-    );
-
-    setTimeout(() => {
-      dot2.value = withRepeat(
-        withSequence(
-          withTiming(-10, { duration: 500 }),
-          withTiming(0, { duration: 500 })
-        ),
-        -1,
-        true
-      );
-    }, 100);
-    setTimeout(() => {
-      dot3.value = withRepeat(
-        withSequence(
-          withTiming(-10, { duration: 500 }),
-          withTiming(0, { duration: 500 })
-        ),
-        -1,
-        true
-      );
-    }, 200);
-    setTimeout(() => {
-      dot4.value = withRepeat(
-        withSequence(
-          withTiming(-10, { duration: 500 }),
-          withTiming(0, { duration: 500 })
-        ),
-        -1,
-        true
-      );
-    }, 300);
-  };
 
   useEffect(() => {
     if (isRecording) {
@@ -217,91 +165,18 @@ const VoiceAssistantScreen = () => {
     }
   }, [isRecording]);
 
-  const dot1Style = useAnimatedStyle(() => ({
-    transform: [{ translateY: dot1.value }],
-  }));
-  const dot2Style = useAnimatedStyle(() => ({
-    transform: [{ translateY: dot2.value }],
-  }));
-  const dot3Style = useAnimatedStyle(() => ({
-    transform: [{ translateY: dot3.value }],
-  }));
-  const dot4Style = useAnimatedStyle(() => ({
-    transform: [{ translateY: dot4.value }],
-  }));
-
-  const rotation = useSharedValue(0);
-
-  // Radius of the circular path
-  const radius = 15;
-
-  useEffect(() => {
-    // Start the spinning animation
-    rotation.value = withRepeat(
-      withTiming(2 * Math.PI, {
-        duration: 2000,
-        easing: Easing.linear,
-      }),
-      -1, // Infinite repeats
-      false // No reverse
-    );
-  }, []);
-
-  // Calculate positions of dots along the circular path with different offsets
-  const greenDotStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        { translateX: radius * Math.cos(rotation.value) },
-        { translateY: radius * Math.sin(rotation.value) },
-      ],
-    };
-  });
-
-  const yellowDotStyle = useAnimatedStyle(() => {
-    // 90 degrees offset (π/2)
-    const offset = rotation.value + Math.PI / 2;
-    return {
-      transform: [
-        { translateX: radius * Math.cos(offset) },
-        { translateY: radius * Math.sin(offset) },
-      ],
-    };
-  });
-
-  const redDotStyle = useAnimatedStyle(() => {
-    // 180 degrees offset (π)
-    const offset = rotation.value + Math.PI;
-    return {
-      transform: [
-        { translateX: radius * Math.cos(offset) },
-        { translateY: radius * Math.sin(offset) },
-      ],
-    };
-  });
-
-  const blueDotStyle = useAnimatedStyle(() => {
-    // 270 degrees offset (3π/2)
-    const offset = rotation.value + (3 * Math.PI) / 2;
-    return {
-      transform: [
-        { translateX: radius * Math.cos(offset) },
-        { translateY: radius * Math.sin(offset) },
-      ],
-    };
-  });
-
   return (
-    <View className="flex-1 bg-[#202124] justify-center items-center">
+    <View className="flex-1 bg-[#2f3133] justify-center items-center">
       {/* Top Bar */}
       <View className="absolute top-12 left-4 right-4 flex-row justify-between px-4">
         <TouchableOpacity
-          className="h-12 w-12 bg-[#5f6368] rounded-full items-center justify-center"
+          className="h-12 w-12 bg-[#424649] rounded-full items-center justify-center"
           onPress={() => router.back()}
         >
-          <MaterialIcons name="chevron-left" size={24} color="white" />
+          <MaterialIcons name="chevron-left" size={34} color="#9da1a4" />
         </TouchableOpacity>
-        <TouchableOpacity className="h-12 w-12 bg-[#5f6368] rounded-full items-center justify-center">
-          <MaterialCommunityIcons name="web" size={24} color="white" />
+        <TouchableOpacity className="h-12 w-12 bg-[#424649] rounded-full items-center justify-center">
+          <MaterialCommunityIcons name="web" size={24} color="#9da1a4" />
         </TouchableOpacity>
       </View>
 
@@ -312,47 +187,9 @@ const VoiceAssistantScreen = () => {
       {/* Conditional rendering based on recording state */}
       <View className="h-8 mb-10 justify-center items-center">
         {isRecording ? (
-          // Animated Dots when recording
-          <View className="flex-row gap-x-6 items-center">
-            <Animated.View
-              className="h-3 w-3 rounded-full bg-blue-500"
-              style={dot1Style}
-            />
-            <Animated.View
-              className="h-3 w-3 rounded-full bg-red-500"
-              style={dot2Style}
-            />
-            <Animated.View
-              className="h-3 w-3 rounded-full bg-yellow-500"
-              style={dot3Style}
-            />
-            <Animated.View
-              className="h-3 w-3 rounded-full bg-green-500"
-              style={dot4Style}
-            />
-          </View>
+          <EnchancedinearAnimations />
         ) : isProcessing ? (
-          // Spinning wheel when processing
-          <View className="h-16 w-16 items-center justify-center">
-            <View className="relative h-16 w-16 flex items-center justify-center">
-              <Animated.View
-                className="absolute h-3 w-3 rounded-full bg-green-500 left-1/2 top-1/2"
-                style={[greenDotStyle, { marginLeft: -6, marginTop: -6 }]}
-              />
-              <Animated.View
-                className="absolute h-3 w-3 rounded-full bg-yellow-500 left-1/2 top-1/2"
-                style={[yellowDotStyle, { marginLeft: -6, marginTop: -6 }]}
-              />
-              <Animated.View
-                className="absolute h-3 w-3 rounded-full bg-red-500 left-1/2 top-1/2"
-                style={[redDotStyle, { marginLeft: -6, marginTop: -6 }]}
-              />
-              <Animated.View
-                className="absolute h-3 w-3 rounded-full bg-blue-500 left-1/2 top-1/2"
-                style={[blueDotStyle, { marginLeft: -6, marginTop: -6 }]}
-              />
-            </View>
-          </View>
+          <EnhancedCircularAnimation />
         ) : isTranscribed && !!transcribedSpeech ? (
           <Text className="text-white text-lg">{transcribedSpeech}</Text>
         ) : (
@@ -360,9 +197,9 @@ const VoiceAssistantScreen = () => {
         )}
       </View>
 
-      <TouchableOpacity className="flex-row items-center bg-gray-700 px-5 py-3 rounded-full mt-48">
-        <MaterialIcons name="music-note" size={24} color="white" />
-        <Text className="text-white ml-2">Search a song</Text>
+      <TouchableOpacity className="flex-row items-center bg-[#1f2125] px-5 py-3 rounded-full mt-48 border-[1.5px] border-[#646569]">
+        <MaterialIcons name="music-note" size={24} color="#9ca0a3" />
+        <Text className="text-[#9ca0a3] ml-2">Search a song</Text>
       </TouchableOpacity>
     </View>
   );
