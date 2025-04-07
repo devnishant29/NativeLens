@@ -101,7 +101,7 @@ export default function SearchScreen() {
 
   const renderItem = ({ item }: { item: (typeof searchHistoryEntries)[0] }) => (
     <Animated.View entering={FadeInRight.duration(500)} key={item.id}>
-      <TouchableOpacity className="rounded-2xl py-2 mb-3 mx-4">
+      <TouchableOpacity className="rounded-2xl py-2 mb-2 mx-4">
         <View className="flex-row items-center">
           <View className="p-2 rounded-full bg-[#4b4e52]">
             <FontAwesome6 name="clock" size={16} color="#e6ebf1" />
