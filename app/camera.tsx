@@ -9,6 +9,7 @@ import { useRouter } from "expo-router";
 
 import SquareBorderOverlay from "@/components/lens/squareBorderOverlay";
 import BottomControls from "@/components/lens/bottomControls";
+import Gallery from "@/components/gallery";
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -145,10 +146,10 @@ export default function App() {
         <SquareBorderOverlay />
         <View className="absolute bottom-0 left-0 right-0">
           <View className="flex-row justify-center items-center mb-16 relative w-full">
-            <TouchableOpacity className="absolute left-4 rounded-full w-16 h-16 items-center justify-center">
+            {/* <TouchableOpacity className="absolute left-4 rounded-full w-16 h-16 items-center justify-center">
               <MaterialIcons name="photo-library" size={30} color="white" />
-            </TouchableOpacity>
-
+            </TouchableOpacity> */}
+            <Gallery />
             <TouchableOpacity
               className="bg-white rounded-full border-[3px] border-white items-center justify-center"
               onPress={takePicture}
