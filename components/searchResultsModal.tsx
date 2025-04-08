@@ -112,6 +112,7 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
   const [modalVisible, setModalVisible] = useState(visible);
   const [showFeedback, setShowFeedback] = useState(true);
   const feedbackOpacity = useRef(new Animated.Value(1)).current;
+  const [imageError, setImageError] = useState(false);
 
   // Position states - show much less initially (70% from bottom)
   const POSITION = {
@@ -356,21 +357,29 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                     .map((item) => (
                       <View key={item.id} className="mb-3">
                         <View className="p-2 rounded-lg shadow-lg">
-                          <Image
-                            source={{ uri: item.imageUrl }}
-                            style={{
-                              width: "100%",
-                              height: undefined,
-                              aspectRatio: item.width / item.height,
-                            }}
-                            onError={(e) =>
-                              console.error(
-                                "Image failed to load:",
-                                e.nativeEvent.error
-                              )
-                            }
-                            resizeMode="cover"
-                          />
+                          {imageError ? (
+                            <View
+                              style={{
+                                width: "100%",
+                                aspectRatio: item.width / item.height,
+                                backgroundColor: "gray",
+                                borderRadius: 8,
+                              }}
+                            />
+                          ) : (
+                            <Image
+                              source={{ uri: item.imageUrl }}
+                              style={{
+                                width: "100%",
+                                height: undefined,
+                                aspectRatio: item.width / item.height,
+                                backgroundColor: "gray",
+                                borderRadius: 8,
+                              }}
+                              resizeMode="cover"
+                              onError={() => setImageError(true)}
+                            />
+                          )}
 
                           <Text className="text-white mt-2 font-semibold">
                             {item.title}
@@ -390,16 +399,29 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                     .map((item) => (
                       <View key={item.id} className="mb-3">
                         <View className="p-2 rounded-lg shadow-lg">
-                          <Image
-                            source={{ uri: item.imageUrl }}
-                            style={{
-                              width: "100%",
-                              height: undefined,
-                              aspectRatio: item.width / item.height,
-                              backgroundColor: "gray", // Debugging visibility
-                            }}
-                            resizeMode="cover"
-                          />
+                          {imageError ? (
+                            <View
+                              style={{
+                                width: "100%",
+                                aspectRatio: item.width / item.height,
+                                backgroundColor: "gray",
+                                borderRadius: 8,
+                              }}
+                            />
+                          ) : (
+                            <Image
+                              source={{ uri: item.imageUrl }}
+                              style={{
+                                width: "100%",
+                                height: undefined,
+                                aspectRatio: item.width / item.height,
+                                backgroundColor: "gray",
+                                borderRadius: 8,
+                              }}
+                              resizeMode="cover"
+                              onError={() => setImageError(true)}
+                            />
+                          )}
 
                           <Text className="text-white mt-2 font-semibold">
                             {item.title}
