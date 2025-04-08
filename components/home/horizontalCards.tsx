@@ -1,6 +1,7 @@
 import { Text, View, ScrollView } from "react-native";
 import React from "react";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 const HorizontalCards = () => {
   const tiles = [
@@ -43,9 +44,10 @@ const HorizontalCards = () => {
       contentContainerStyle={{ paddingHorizontal: 16 }}
       className="mb-4"
     >
-      {tiles.map((tile) => (
-        <View
+      {tiles.map((tile, index) => (
+        <Animated.View
           key={tile.key}
+          entering={FadeIn.duration(500).delay(index * 100)}
           className="w-48 bg-[#1f2125] mr-4 rounded-3xl p-4 border-[1.5px] border-[#47494d]"
         >
           <Text className="text-white text-base font-medium">{tile.title}</Text>
@@ -55,7 +57,7 @@ const HorizontalCards = () => {
             </Text>
             {tile.icon}
           </View>
-        </View>
+        </Animated.View>
       ))}
     </ScrollView>
   );

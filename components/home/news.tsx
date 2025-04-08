@@ -2,6 +2,8 @@ import { Text, View } from "react-native";
 import React from "react";
 import { Image } from "react-native";
 
+import Animated, { FadeInDown } from "react-native-reanimated";
+
 const News = () => {
   const newsItems = [
     {
@@ -23,7 +25,11 @@ const News = () => {
   return (
     <View className="pb-16">
       {newsItems.map((item, index) => (
-        <View key={index} className="mx-4 mb-4 rounded-xl overflow-hidden">
+        <Animated.View
+          key={index}
+          className="mx-4 mb-4 rounded-xl overflow-hidden"
+          entering={FadeInDown.duration(500).delay(index * 100)}
+        >
           <Image
             source={{ uri: item.imageUrl }}
             className="w-full h-60 rounded-[24px]"
@@ -34,7 +40,7 @@ const News = () => {
               {item.title}
             </Text>
           </View>
-        </View>
+        </Animated.View>
       ))}
     </View>
   );

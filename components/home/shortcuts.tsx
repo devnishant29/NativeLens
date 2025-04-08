@@ -7,6 +7,8 @@ import {
 } from "@expo/vector-icons";
 import React from "react";
 
+import Animated, { FadeIn } from "react-native-reanimated";
+
 const Shortcuts = () => {
   const buttons = [
     {
@@ -39,8 +41,9 @@ const Shortcuts = () => {
   return (
     <View className="flex-row justify-between px-4 mb-6 border-b-2 border-[#3c4043] pb-6">
       {buttons.map((button, index) => (
-        <TouchableOpacity
+        <Animated.View
           key={button.key}
+          entering={FadeIn.duration(500).delay(index * 100)}
           className={`flex-1 items-center justify-center h-20 rounded-full ${
             index === 0
               ? "mr-1.5"
@@ -50,8 +53,10 @@ const Shortcuts = () => {
           }`}
           style={{ backgroundColor: button.bgColor }}
         >
-          {button.icon}
-        </TouchableOpacity>
+          <TouchableOpacity className="w-full h-full items-center justify-center">
+            {button.icon}
+          </TouchableOpacity>
+        </Animated.View>
       ))}
     </View>
   );
