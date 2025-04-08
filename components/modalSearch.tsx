@@ -22,82 +22,87 @@ interface GoogleLensModalProps {
 const dummyItems = [
   {
     id: 1,
-    title: "Mountain Landscape",
-    description: "Beautiful scenic view of mountains",
+    title: "Mountain View in Rural Japan",
+    description:
+      "A breathtaking scenic view from the top of a Japanese mountain range",
     imageUrl:
-      "https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 4:3 aspect ratio
+      "https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 400,
     height: 300,
   },
   {
     id: 2,
-    title: "Urban Photography",
-    description: "City skyline at sunset",
+    title: "Cherry Blossom Season",
+    description:
+      "Delicate sakura trees in full bloom during springtime in Japan",
     imageUrl:
-      "https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 3:4 aspect ratio (portrait)
+      "https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 300,
     height: 400,
   },
   {
     id: 3,
-    title: "Abstract Art",
-    description: "Modern abstract composition",
+    title: "Torii Gate by the Water",
+    description:
+      "An iconic red Torii gate standing at the entrance of a sacred shrine",
     imageUrl:
-      "https://images.pexels.com/photos/301614/pexels-photo-301614.jpeg", // 2:1 aspect ratio (wide)
+      "https://images.pexels.com/photos/301614/pexels-photo-301614.jpeg",
     width: 500,
     height: 250,
   },
   {
     id: 4,
-    title: "Wildlife Shot",
-    description: "Exotic animals in natural habitat",
+    title: "Cultural Traditions of Japan",
+    description:
+      "A glimpse into the daily life and customs in traditional Japanese society",
     imageUrl:
-      "https://images.pexels.com/photos/1822605/pexels-photo-1822605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 1:1 aspect ratio (square)
+      "https://images.pexels.com/photos/1822605/pexels-photo-1822605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 300,
     height: 300,
   },
   {
     id: 5,
-    title: "Beach Paradise",
-    description: "Tropical island getaway",
+    title: "Village Life in Japan",
+    description: "A peaceful countryside village surrounded by natural beauty",
     imageUrl:
-      "https://images.pexels.com/photos/2187605/pexels-photo-2187605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 7:4 aspect ratio (wide)
+      "https://images.pexels.com/photos/2187605/pexels-photo-2187605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 350,
     height: 200,
   },
   {
     id: 6,
-    title: "Food Photography",
-    description: "Delicious culinary creation",
+    title: "Majestic Mount Fuji",
+    description: "The iconic and snow-capped Mount Fuji under a clear sky",
     imageUrl:
-      "https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 5:7 aspect ratio (tall)
+      "https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 250,
     height: 350,
   },
   {
     id: 7,
-    title: "Architectural Wonder",
-    description: "Stunning modern building design",
+    title: "Historic Japanese Castle",
+    description:
+      "A traditional Japanese castle showcasing classic architectural elegance",
     imageUrl:
-      "https://images.pexels.com/photos/1829980/pexels-photo-1829980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 12:5 aspect ratio (very wide)
+      "https://images.pexels.com/photos/1829980/pexels-photo-1829980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 600,
     height: 250,
   },
   {
     id: 8,
-    title: "Portrait Shot",
-    description: "Professional studio portrait",
+    title: "Mount Fuji at Sunrise",
+    description: "A beautiful view of Mount Fuji lit by the early morning sun",
     imageUrl:
-      "https://images.pexels.com/photos/1673978/pexels-photo-1673978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 16:9 ratio (vertical)
+      "https://images.pexels.com/photos/1673978/pexels-photo-1673978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 320,
     height: 450,
   },
   {
     id: 9,
-    title: "Japan",
-    description: "Professional studio portrait",
+    title: "Buddhist Temple in the Mountains",
+    description: "A tranquil temple hidden among the mountains of Japan",
     imageUrl:
-      "https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 16:9 ratio (vertical)
+      "https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     width: 300,
     height: 600,
   },

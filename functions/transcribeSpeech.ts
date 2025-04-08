@@ -13,7 +13,7 @@ export const transcribeSpeech = async () => {
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    return "This is placeholder for transcribed text";
+    return "This is a test transcription of the audio file. It should be replaced with actual transcription logic. By using API calls or libraries to convert audio to text.";
   } catch (e) {
     console.error("Failed to transcribe speech!", e);
     return undefined;

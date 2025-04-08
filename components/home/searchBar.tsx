@@ -34,7 +34,7 @@ const SearchBar = () => {
           className="w-8 h-8 items-center justify-center"
           onPress={(e) => {
             e.stopPropagation();
-            router.push("/camera");
+            router.push("/lens");
           }}
         >
           <MaterialCommunityIcons name="google-lens" size={24} color="white" />

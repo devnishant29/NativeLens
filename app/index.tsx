@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, View, Text, ScrollView } from "react-native";
 import { useState } from "react";
 
-import GoogleAccountModal from "@/components/GoogleAccountModal";
+import GoogleAccountModal from "@/components/modalAccount";
 
 import SearchBar from "@/components/home/searchBar";
 import Shortcuts from "@/components/home/shortcuts";
