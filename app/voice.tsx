@@ -182,13 +182,15 @@ const VoiceAssistantScreen = () => {
       </Text>
 
       {/* Conditional rendering based on recording state */}
-      <View className="h-8 mb-10 justify-center items-center">
+      <View className="h-fit mb-10 justify-center items-center px-6">
         {isRecording ? (
           <EnchancedinearAnimations />
         ) : isProcessing ? (
           <EnhancedCircularAnimation />
         ) : isTranscribed && !!transcribedSpeech ? (
-          <Text className="text-white text-lg">{transcribedSpeech}</Text>
+          <Text className="text-white text-lg" style={{ flexWrap: "wrap" }}>
+            {transcribedSpeech}
+          </Text>
         ) : (
           <Text className="text-white text-lg">Failed to recognize voice</Text>
         )}
