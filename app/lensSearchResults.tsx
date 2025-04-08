@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { View, Image, ActivityIndicator, TouchableOpacity } from "react-native";
 import { Dimensions } from "react-native";
 import * as FileSystem from "expo-file-system";
-import GoogleLensModal from "@/components/searchResultsModal";
+import GoogleLensModal from "@/components/modalSearch";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
@@ -44,7 +44,7 @@ const SearchResults = () => {
   }
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 bg-#1f2125">
       <Image
         source={{ uri: imageUri }}
         style={{ width, height }}

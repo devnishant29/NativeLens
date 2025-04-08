@@ -56,7 +56,7 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="voice" />
         <Stack.Screen name="search" />
-        <Stack.Screen name="camera" />
+        <Stack.Screen name="lens" />
         <Stack.Screen name="lensSearchResults" />
       </Stack>
     </>
