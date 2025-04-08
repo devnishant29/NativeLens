@@ -144,7 +144,7 @@ export default function SearchScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             className="mx-4"
-            onPress={() => router.push("/camera")}
+            onPress={() => router.push("/lens")}
           >
             <MaterialCommunityIcons
               name="google-lens"
