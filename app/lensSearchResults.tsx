@@ -55,9 +55,9 @@ const SearchResults = () => {
       {/* Back Button */}
       <TouchableOpacity
         onPress={() => router.back()}
-        className="absolute top-12 left-4 z-50 p-2 bg-white rounded-full"
+        className="absolute top-12 left-4 z-50 p-2 bg-[#1f2125] rounded-full"
       >
-        <MaterialIcons name="chevron-left" size={24} color="grey-800" />
+        <MaterialIcons name="chevron-left" size={30} color="white" />
       </TouchableOpacity>
 
       <GoogleLensModal

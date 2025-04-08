@@ -24,7 +24,8 @@ const dummyItems = [
     id: 1,
     title: "Mountain Landscape",
     description: "Beautiful scenic view of mountains",
-    imageUrl: "https://placehold.co/400x300/png", // 4:3 aspect ratio
+    imageUrl:
+      "https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 4:3 aspect ratio
     width: 400,
     height: 300,
   },
@@ -32,7 +33,8 @@ const dummyItems = [
     id: 2,
     title: "Urban Photography",
     description: "City skyline at sunset",
-    imageUrl: "https://placehold.co/300x400/png", // 3:4 aspect ratio (portrait)
+    imageUrl:
+      "https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 3:4 aspect ratio (portrait)
     width: 300,
     height: 400,
   },
@@ -40,7 +42,8 @@ const dummyItems = [
     id: 3,
     title: "Abstract Art",
     description: "Modern abstract composition",
-    imageUrl: "https://placehold.co/500x250/png", // 2:1 aspect ratio (wide)
+    imageUrl:
+      "https://images.pexels.com/photos/301614/pexels-photo-301614.jpeg", // 2:1 aspect ratio (wide)
     width: 500,
     height: 250,
   },
@@ -48,7 +51,8 @@ const dummyItems = [
     id: 4,
     title: "Wildlife Shot",
     description: "Exotic animals in natural habitat",
-    imageUrl: "https://placehold.co/300x300/png", // 1:1 aspect ratio (square)
+    imageUrl:
+      "https://images.pexels.com/photos/1822605/pexels-photo-1822605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 1:1 aspect ratio (square)
     width: 300,
     height: 300,
   },
@@ -56,7 +60,8 @@ const dummyItems = [
     id: 5,
     title: "Beach Paradise",
     description: "Tropical island getaway",
-    imageUrl: "https://placehold.co/350x200/png", // 7:4 aspect ratio (wide)
+    imageUrl:
+      "https://images.pexels.com/photos/2187605/pexels-photo-2187605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 7:4 aspect ratio (wide)
     width: 350,
     height: 200,
   },
@@ -64,7 +69,8 @@ const dummyItems = [
     id: 6,
     title: "Food Photography",
     description: "Delicious culinary creation",
-    imageUrl: "https://placehold.co/250x350/png", // 5:7 aspect ratio (tall)
+    imageUrl:
+      "https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 5:7 aspect ratio (tall)
     width: 250,
     height: 350,
   },
@@ -72,7 +78,8 @@ const dummyItems = [
     id: 7,
     title: "Architectural Wonder",
     description: "Stunning modern building design",
-    imageUrl: "https://placehold.co/600x250/png", // 12:5 aspect ratio (very wide)
+    imageUrl:
+      "https://images.pexels.com/photos/1829980/pexels-photo-1829980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 12:5 aspect ratio (very wide)
     width: 600,
     height: 250,
   },
@@ -80,9 +87,19 @@ const dummyItems = [
     id: 8,
     title: "Portrait Shot",
     description: "Professional studio portrait",
-    imageUrl: "https://placehold.co/320x450/png", // 16:9 ratio (vertical)
+    imageUrl:
+      "https://images.pexels.com/photos/1673978/pexels-photo-1673978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 16:9 ratio (vertical)
     width: 320,
     height: 450,
+  },
+  {
+    id: 9,
+    title: "Japan",
+    description: "Professional studio portrait",
+    imageUrl:
+      "https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // 16:9 ratio (vertical)
+    width: 300,
+    height: 600,
   },
 ];
 
@@ -407,7 +424,7 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                   left: 20,
                   right: 20,
                   margin: 20,
-                  backgroundColor: "#1f2125",
+                  backgroundColor: "#2f3133",
                   borderRadius: 24,
                   padding: 16,
                   shadowColor: "#000",
@@ -418,24 +435,30 @@ const GoogleLensModal: React.FC<GoogleLensModalProps> = ({
                   zIndex: 10,
                 }}
               >
-                <View className="flex-row justify-center mt-2">
-                  <Text className="text-[#979da0] text-center mt-1 mr-2">
-                    Are these results useful?
-                  </Text>
-                  <TouchableOpacity
-                    className="px-2"
-                    onPress={() => handleFeedback("Yes")}
-                  >
-                    <Text className="text-[#8aaeed] text-xl">Yes</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    className="px-2"
-                    onPress={() => handleFeedback("No")}
-                  >
-                    <Text className="text-[#8aaeed] text-xl">No</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity className="ml-2">
-                    <MaterialIcons name="close" size={24} color="#e1e2e6" />
+                <View className="relative items-center justify-center">
+                  <View className="flex-row items-center justify-center">
+                    <Text className="text-[#979da0] text-base mr-2">
+                      Are these results useful?
+                    </Text>
+
+                    <TouchableOpacity
+                      className="px-2"
+                      onPress={() => handleFeedback("Yes")}
+                    >
+                      <Text className="text-[#8aaeed] text-base">Yes</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      className="px-2"
+                      onPress={() => handleFeedback("No")}
+                    >
+                      <Text className="text-[#8aaeed] text-base">No</Text>
+                    </TouchableOpacity>
+                  </View>
+
+                  {/* Close icon absolutely positioned and vertically centered */}
+                  <TouchableOpacity className="absolute right-0 top-1/2 -translate-y-1/2">
+                    <MaterialIcons name="close" size={20} color="#e1e2e6" />
                   </TouchableOpacity>
                 </View>
               </Animated.View>
