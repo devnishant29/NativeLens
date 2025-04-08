@@ -17,7 +17,10 @@ export default function App() {
     <SafeAreaView className="flex-1 bg-[#1f2125]">
       <Header setModalVisible={setModalVisible} />
 
-      <ScrollView>
+      <ScrollView
+        bounces={true} // Enables the bounce/spring effect on scroll
+        showsVerticalScrollIndicator={false}
+      >
         <View className="items-center justify-center mt-6 mb-6">
           <View className="flex-row">
             <Text className="text-white text-6xl font-bold">Googl</Text>

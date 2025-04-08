@@ -99,8 +99,17 @@ const last10Entries = searchHistoryEntries.slice(-10).reverse();
 export default function SearchScreen() {
   const router = useRouter();
 
-  const renderItem = ({ item }: { item: (typeof searchHistoryEntries)[0] }) => (
-    <Animated.View entering={FadeInRight.duration(500)} key={item.id}>
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: (typeof searchHistoryEntries)[0];
+    index: number;
+  }) => (
+    <Animated.View
+      entering={FadeInRight.duration(500).delay(index * 100)}
+      key={item.id}
+    >
       <TouchableOpacity className="rounded-2xl py-2 mb-2 mx-4">
         <View className="flex-row items-center">
           <View className="p-2 rounded-full bg-[#4b4e52]">

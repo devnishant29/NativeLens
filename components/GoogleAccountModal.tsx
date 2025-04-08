@@ -7,6 +7,11 @@ import {
   MaterialIcons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import Animated, {
+  FadeInDown,
+  FadeOutDown,
+  FadeInRight,
+} from "react-native-reanimated";
 
 interface GoogleAccountModalProps {
   modalVisible: boolean;
@@ -19,7 +24,7 @@ const GoogleAccountModal: React.FC<GoogleAccountModalProps> = ({
 }) => {
   return (
     <Modal
-      animationType="slide"
+      animationType="none"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => setModalVisible(false)}
@@ -27,11 +32,12 @@ const GoogleAccountModal: React.FC<GoogleAccountModalProps> = ({
     >
       <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
         <View className="flex-1 justify-end bg-black/50 pt-4">
-          <View
+          <Animated.View
+            entering={FadeInDown.duration(400)}
+            exiting={FadeOutDown.duration(300)}
             className="bg-[#2e3034] p-4 rounded-3xl mx-4 mb-4"
             pointerEvents="box-none"
           >
-            {/* Rest of your modal content remains the same */}
             <TouchableWithoutFeedback onPress={(e) => e.stopPropagation()}>
               <View>
                 {/* Close Button */}
@@ -51,28 +57,28 @@ const GoogleAccountModal: React.FC<GoogleAccountModalProps> = ({
 
                 {/* Options List */}
                 <ScrollView>
-                  <Option text="Turn on Incognito" icon="incognito" />
-
-                  {/* Group with reduced spacing between items */}
-                  <View className="mb-1">
-                    <Option text="Search history" icon="history" />
-                    <Option text="Delete last 15 mins" icon="delete" />
-                  </View>
-
-                  <Option text="SafeSearch" icon="security" />
-                  <Option text="Interests" icon="favorite" />
-
-                  <View className="mb-1">
-                    <Option text="Passwords" icon="lock" />
-                    <Option text="Your profile" icon="person" />
-                    <Option text="Search personalization" icon="tune" />
-                  </View>
-
-                  <Option text="Settings" icon="settings" />
-                  <Option text="Help and feedback" icon="help" />
+                  {[
+                    { text: "Turn on Incognito", icon: "incognito" },
+                    { text: "Search history", icon: "history" },
+                    { text: "Delete last 15 mins", icon: "delete" },
+                    { text: "SafeSearch", icon: "security" },
+                    { text: "Interests", icon: "favorite" },
+                    { text: "Passwords", icon: "lock" },
+                    { text: "Your profile", icon: "person" },
+                    { text: "Search personalization", icon: "tune" },
+                    { text: "Settings", icon: "settings" },
+                    { text: "Help and feedback", icon: "help" },
+                  ].map((item, index) => (
+                    <Animated.View
+                      key={index}
+                      entering={FadeInRight.delay(index * 80)}
+                    >
+                      <Option text={item.text} icon={item.icon} />
+                    </Animated.View>
+                  ))}
                 </ScrollView>
 
-                {/* Footer Links */}
+                {/* Footer */}
                 <View className="flex-row justify-center mt-4">
                   <TouchableOpacity>
                     <Text className="text-gray-400">Privacy Policy</Text>
@@ -84,7 +90,7 @@ const GoogleAccountModal: React.FC<GoogleAccountModalProps> = ({
                 </View>
               </View>
             </TouchableWithoutFeedback>
-          </View>
+          </Animated.View>
         </View>
       </TouchableWithoutFeedback>
     </Modal>
