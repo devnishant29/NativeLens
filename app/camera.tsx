@@ -110,7 +110,7 @@ export default function App() {
   };
 
   return (
-    <View className="flex-1 justify-center">
+    <View className="flex-1 justify-center bg-[#1f2125]">
       <CameraView
         ref={cameraRef}
         style={styles.camera}
@@ -159,10 +159,9 @@ export default function App() {
               </View>
             </TouchableOpacity>
           </View>
-
-          <BottomControls />
         </View>
       </CameraView>
+      <BottomControls />
 
       <GoogleLensModal
         visible={modalVisible}
@@ -175,5 +174,7 @@ export default function App() {
 const styles = StyleSheet.create({
   camera: {
     flex: 1,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
   },
 });
