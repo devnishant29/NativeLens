@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
-import { Image } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { useEffect } from "react";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
@@ -94,10 +93,37 @@ const Gallery = () => {
   return (
     <TouchableOpacity
       onPress={pickImage}
-      className="absolute left-4 w-14 h-14 items-center justify-center ml-6 border-l-2 border-b-2 border-white rounded-bl-xl"
+      className="absolute left-4 w-20 h-20 items-center justify-center ml-6"
     >
-      <View className="w-12 h-12 rounded-lg overflow-hidden items-center justify-center ml-1.5 mb-1.5 bg-white">
+      {/* Bottom white layer */}
+      <View
+        className="w-12 h-12 rounded-bl-[12px] border-l-2 border-b-2 border-white  overflow-hidden items-center justify-center bg-transparent"
+        style={{
+          position: "absolute",
+          zIndex: 1,
+          transform: [{ translateX: -5 }, { translateY: 5 }],
+        }}
+      />
+
+      {/* Top image layer */}
+      <View
+        className="w-12 h-12 rounded-[8px] overflow-hidden items-center justify-center ml-1.5 mb-1.5 bg-white"
+        style={{ zIndex: 3 }}
+      >
         {image && <Image source={{ uri: image }} style={styles.image} />}
+        {!image && (
+          <Image
+            source={{
+              uri: "https://images.pexels.com/photos/30959912/pexels-photo-30959912/free-photo-of-traditional-shrine-in-tokyo-with-umbrella.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            }}
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "gray", // Debugging visibility
+            }}
+            resizeMode="cover"
+          />
+        )}
       </View>
     </TouchableOpacity>
   );
