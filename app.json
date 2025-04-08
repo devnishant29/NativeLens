@@ -15,7 +15,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/google-lens-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.comfortableowl.google_ui_clone"
     },
     "web": {
       "bundler": "metro",
@@ -45,6 +50,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "71f83acb-8b9d-4f37-9052-d9b485da56cc"
+      }
     }
   }
 }
